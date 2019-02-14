@@ -1,6 +1,9 @@
 import system
 
 class Curve:
+    """
+    Class for parabolas and circumferences.
+    """
     def __init__(self, xA, yA, xB, yB, xC, yC):
         self.xA = xA
         self.yA = yA
