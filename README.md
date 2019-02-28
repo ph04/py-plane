@@ -1,7 +1,7 @@
 # py-plane
 A script able to return information about curves on cartesian planes.
 
-`src/plane.py` is able to return information about Triangles, Parabolas and Circumferences on a cartesian plane, given the needed information about that specific figure. Run the script on your console.
+`src/plane.py` is able to return information about Triangles, Parabolas, Circumferences and Ellipses on a cartesian plane, given the needed information about that specific figure. Run the script on your console.
 
 `src/curve.py` returns the defined Parabola and Circumference by the given 3 points. Run the script on your console. If _division by zero error_ is raised, one of the two curves does not exist.
 
