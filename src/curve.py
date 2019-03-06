@@ -19,7 +19,7 @@ class Curve:
         a1 = self.xA**2
         a2 = self.xB**2
         a3 = self.xC**2
-        self.parabsystem = system.System(a1, a2, a3, self.xA, self.xB, self.xC, 1, 1, 1, self.yA, self.yB, self.yC)
+        self.parabsystem = system.System3x3(a1, a2, a3, self.xA, self.xB, self.xC, 1, 1, 1, self.yA, self.yB, self.yC)
         return self.parabsystem.solve()
     
     def circumference(self):
@@ -29,7 +29,7 @@ class Curve:
         d1 = -self.xA**2 - self.yA**2
         d2 = -self.xB**2 - self.yB**2
         d3 = -self.xC**2 - self.yC**2
-        self.circsystem = system.System(self.xA, self.xB, self.xC, self.yA, self.yB, self.yC, 1, 1, 1, d1, d2, d3)
+        self.circsystem = system.System3x3(self.xA, self.xB, self.xC, self.yA, self.yB, self.yC, 1, 1, 1, d1, d2, d3)
         return self.circsystem.solve()
 
 def main():
