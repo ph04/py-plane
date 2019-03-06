@@ -34,7 +34,7 @@ class Triangle:
         """
         Returns area's value.
         """
-        matrix = system.Matrix(1, 1, 1, self.xA, self.xB, self.xC, self.yA, self.yB, self.yC).sarrus()
+        matrix = system.Matrix3x3(1, 1, 1, self.xA, self.xB, self.xC, self.yA, self.yB, self.yC).sarrus()
         return 0.5 * abs(matrix)
 
     def barycenter(self):
@@ -124,7 +124,7 @@ class Ellipse:
     def __init__(self, a, b):
         self.a = a
         self.b = b
-        self.c = self.a**2 - self.b**2
+        self.c = self.a**2 - self.b**2 if self.a > self.b else self.b**2 - self.a**2
         if not self.a or not self.b:
             raise ValueError("Nor the value of 'a' neither the value of 'b' can be 0.")
     
