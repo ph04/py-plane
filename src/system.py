@@ -1,4 +1,22 @@
-class Matrix:
+class Matrix2x2:
+    """
+    Class for 2x2 matrices.
+    """
+    def __init__(self, A1, A2, B1, B2):
+        self.A1 = A1
+        self.A2 = A2
+        self.B1 = B1
+        self.B2 = B2
+    
+    def cross(self):
+        """
+        Cross product for 2x2 matrices' determinant.
+        """
+        first = self.A1 * self.B2
+        second = self.A2 * self.B1
+        return first - second
+
+class Matrix3x3:
     """
     Class for 3x3 matrices.
     """
@@ -17,15 +35,59 @@ class Matrix:
         """
         Sarrus' rule for 3x3 matrices' determinant.
         """
-        first = (self.A1 * self.B2 * self.C3)
-        second = (self.B1 * self.C2 * self.A3)
-        third = (self.C1 * self.A2 * self.B3)
-        fourth = (self.C1 * self.B2 * self.A3)
-        fifth = (self.B1 * self.A2 * self.C3)
-        sixth = (self.A1 * self.C2 * self.B3)
+        first = self.A1 * self.B2 * self.C3
+        second = self.B1 * self.C2 * self.A3
+        third = self.C1 * self.A2 * self.B3
+        fourth = self.C1 * self.B2 * self.A3
+        fifth = self.B1 * self.A2 * self.C3
+        sixth = self.A1 * self.C2 * self.B3
         return first + second + third - fourth - fifth - sixth
 
-class System:
+class System2x2:
+    """
+    Class for linear systems of equations in two variables (2x2 system).
+    This class solves the system with Cramer's rule.
+    Equations form: ax + by = c
+    """
+    def __init__(self, a1, a2, b1, b2, c1, c2):
+        self.a1 = a1
+        self.a2 = a2
+        self.b1 = b1
+        self.b2 = b2
+        self.c1 = c1
+        self.c2 = c2
+    
+    def __determinant(self):
+        """
+        Calculates the determinant of the first matrix.
+        """
+        Dmatrix = Matrix2x2(self.a1, self.a2, self.b1, self.b2)
+        self.D = Dmatrix.cross()
+    
+    def __determinantX(self):
+        """
+        Calculates the determinant of the second matrix.
+        """
+        DXmatrix = Matrix2x2(self.c1, self.c2, self.b1, self.b2)
+        self.DX = DXmatrix.cross()
+    
+    def __determinantY(self):
+        """
+        Calculates the determinant of the third matrix.
+        """
+        DYmatrix = Matrix2x2(self.a1, self.a2, self.c1, self.c2)
+        self.DY = DYmatrix.cross()
+    
+    def solve(self):
+        """
+        Returns the results of the three variables.
+        """
+        self.__determinant()
+        self.__determinantX()
+        self.__determinantY()
+        return self.DX / self.D, self.DY / self.D
+
+class System3x3:
     """
     Class for linear systems of equations in three variables (3x3 system).
     This class solves the system with Cramer's rule.
@@ -49,28 +111,28 @@ class System:
         """
         Calculates the determinant of the first matrix.
         """
-        Dmatrix = Matrix(self.a1, self.a2, self.a3, self.b1, self.b2, self.b3, self.c1, self.c2, self.c3)
+        Dmatrix = Matrix3x3(self.a1, self.a2, self.a3, self.b1, self.b2, self.b3, self.c1, self.c2, self.c3)
         self.D = Dmatrix.sarrus()
     
     def __determinantX(self):
         """
         Calculates the determinant of the second matrix.
         """
-        DXmatrix = Matrix(self.d1, self.d2, self.d3, self.b1, self.b2, self.b3, self.c1, self.c2, self.c3)
+        DXmatrix = Matrix3x3(self.d1, self.d2, self.d3, self.b1, self.b2, self.b3, self.c1, self.c2, self.c3)
         self.DX = DXmatrix.sarrus()
     
     def __determinantY(self):
         """
         Calculates the determinant of the third matrix.
         """
-        DYmatrix = Matrix(self.a1, self.a2, self.a3, self.d1, self.d2, self.d3, self.c1, self.c2, self.c3)
+        DYmatrix = Matrix3x3(self.a1, self.a2, self.a3, self.d1, self.d2, self.d3, self.c1, self.c2, self.c3)
         self.DY = DYmatrix.sarrus()
     
     def __determinantZ(self):
         """
         Calculates the determinant of the fourth matrix.
         """
-        DZmatrix = Matrix(self.a1, self.a2, self.a3, self.b1, self.b2, self.b3, self.d1, self.d2, self.d3)
+        DZmatrix = Matrix3x3(self.a1, self.a2, self.a3, self.b1, self.b2, self.b3, self.d1, self.d2, self.d3)
         self.DZ = DZmatrix.sarrus()
     
     def solve(self):
@@ -96,7 +158,7 @@ def main():
     C = list(map(float, Ccoeff.split(",")))
     D = list(map(float, Dcoeff.split(",")))
 
-    system = System(A[0], A[1], A[2], B[0], B[1], B[2], C[0], C[1], C[2], D[0], D[1], D[2])
+    system = System3x3(A[0], A[1], A[2], B[0], B[1], B[2], C[0], C[1], C[2], D[0], D[1], D[2])
 
     print(system.solve())
 
