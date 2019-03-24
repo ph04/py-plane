@@ -9,5 +9,5 @@ A script able to return information about curves on cartesian planes.
 
 `src/equation.py` contains classes for Linear and Second Grade Equations.
 
-#Requirements
+# Requirements
 -Python 3.x
