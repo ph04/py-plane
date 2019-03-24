@@ -8,3 +8,6 @@ A script able to return information about curves on cartesian planes.
 `src/system.py` contains classes for 3x3 Linear Systems and for 3x3 Matrices; it solves 3x3 Linear Systems with the Cramer's rule and calculates the determinant of the 3x3 Matrices with the Sarrus' rule.
 
 `src/equation.py` contains classes for Linear and Second Grade Equations.
+
+#Requirements
+-Python 3.x
